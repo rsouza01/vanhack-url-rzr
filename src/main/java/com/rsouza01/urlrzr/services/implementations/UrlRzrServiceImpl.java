@@ -28,8 +28,8 @@ public class UrlRzrServiceImpl implements UrlRzrService {
 
 	@Override
 	public String getOriginalUrl(String shortenedUrl) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return urlRzrRepository.findOne(shortenedUrl).getOriginalURL();
 	}
 
 }
