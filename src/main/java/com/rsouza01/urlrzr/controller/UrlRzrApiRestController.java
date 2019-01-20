@@ -2,7 +2,6 @@ package com.rsouza01.urlrzr.controller;
 
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rsouza01.urlrzr.controller.dto.UrlRequest;
 import com.rsouza01.urlrzr.exceptions.UrlNotFoundException;
+import com.rsouza01.urlrzr.model.Statistics;
 import com.rsouza01.urlrzr.services.UrlRzrService;
 import com.rsouza01.urlrzr.utils.UrlRzrUtils;
 
@@ -78,7 +78,15 @@ public class UrlRzrApiRestController {
 		} catch (Exception e) {
 	    	return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-        
-        
     }
+    
+    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
+    public ResponseEntity<Statistics> getStatistics() throws Exception {
+    	
+    	Statistics statistics = urlRzrService.getStatistics();
+    	
+    	
+		return new ResponseEntity<Statistics>(statistics, HttpStatus.OK);
+    }
+    
 }

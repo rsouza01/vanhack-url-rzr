@@ -6,5 +6,7 @@ import com.rsouza01.urlrzr.model.UrlRzr;
 
 
 public interface UrlRzrRepository extends CrudRepository<UrlRzr, String> {
+	
+	long count();
 
 }

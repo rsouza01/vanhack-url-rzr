@@ -5,13 +5,18 @@ import javax.persistence.Id;
 
 
 @Entity
-public class UrlRzr {
+public class UrlRzr extends AuditModel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7414344696564671152L;
 
 	@Id
 	private String shortenedURL;
 
 	private String originalURL;
-
+	
 	public UrlRzr() {
 	}
 

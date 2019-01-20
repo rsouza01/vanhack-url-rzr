@@ -1,15 +1,9 @@
 FROM openjdk:8u121-jre-alpine 
 
-MAINTAINER astrolab.web
-
-    
-#COPY jar/astrolab-config-server.jar /opt/spring-cloud/lib/
-ADD maven/astrolab-config-server-0.0.1-SNAPSHOT.jar /opt/spring-cloud/lib/astrolab-config-server.jar
+ADD maven/vanhack-url-rzr-1.0-SNAPSHOT.jar /opt/spring-cloud/lib/vanhack-url-rzr.jar
 
 ENTRYPOINT ["/usr/bin/java"]
 
-CMD ["-jar", "/opt/spring-cloud/lib/astrolab-config-server.jar"]
+CMD ["-jar", "/opt/spring-cloud/lib/vanhack-url-rzr.jar"]
 
-#VOLUME /var/lib/spring-cloud/config-repo
-
-EXPOSE 9090
+EXPOSE 8080

@@ -1,9 +1,18 @@
 package com.rsouza01.urlrzr.services.implementations;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rsouza01.urlrzr.exceptions.UrlNotFoundException;
+import com.rsouza01.urlrzr.model.DomainUsage;
+import com.rsouza01.urlrzr.model.Statistics;
 import com.rsouza01.urlrzr.model.UrlRzr;
 import com.rsouza01.urlrzr.repository.UrlRzrRepository;
 import com.rsouza01.urlrzr.services.UrlRzrService;
@@ -53,5 +62,39 @@ public class UrlRzrServiceImpl implements UrlRzrService {
 			throw new UrlNotFoundException();
 		else 
 			return urlRzr.getOriginalURL();
+	}
+
+	@Override
+	public Statistics getStatistics() {
+		
+		Statistics statistics = new Statistics();
+		
+		
+		Map<String, DomainUsage> hash = new HashMap<String, DomainUsage>();
+
+
+		Iterable<UrlRzr> links = urlRzrRepository.findAll();
+		
+		for(UrlRzr url: links) {
+			
+			try {
+				URI uri = new URI(url.getOriginalURL());
+
+				DomainUsage domainUsage = hash.get(uri.getHost());
+				
+				if(domainUsage == null) {
+					hash.put(uri.getHost(), new DomainUsage(uri.getHost(), 1));
+				} else {
+					domainUsage.setCount(domainUsage.getCount()+1);
+				}
+
+			} catch (URISyntaxException e) {
+			}
+		}
+		
+		statistics.setTotalUrls(urlRzrRepository.count());
+		statistics.setDomainUsage(new ArrayList<DomainUsage>(hash.values()));
+		
+		return statistics;
 	}
 }

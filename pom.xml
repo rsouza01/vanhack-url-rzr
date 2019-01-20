@@ -11,6 +11,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <docker.fileName>Dockerfile.yml</docker.fileName>
+		<!-- ACCOUNT -->
+		<docker.image.prefix>rsouza01</docker.image.prefix>
+
+		<!-- PROJECT -->
+		<docker.image.name>vanhack-url-rzr</docker.image.name>
+        
     </properties>
 
     <parent>
@@ -63,6 +71,40 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.28.0</version>
+
+				<configuration>
+					<!--
+                    <dockerHost>http://127.0.0.1:2375</dockerHost>
+                    --> 
+                    <dockerHost>unix:///var/run/docker.sock</dockerHost>
+ 					
+                    <verbose>true</verbose>
+					<images>
+						<image>
+							<name>${docker.image.prefix}/${docker.image.name}</name>
+							<build>
+								<dockerFileDir>${project.basedir}</dockerFileDir>
+                                <dockerFile>${docker.fileName}</dockerFile>
+
+                                <!--copies artficact to docker build dir in target-->
+								<assembly>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+								<tags>
+									<tag>latest</tag>
+									<tag>${project.version}</tag>
+								</tags>
+							</build>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
+            
         </plugins>
     </build>
 </project>
