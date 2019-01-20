@@ -6,12 +6,11 @@ import javax.persistence.Id;
 
 @Entity
 public class UrlRzr {
-	
-	
-	@Id
-	private String originalURL;
 
+	@Id
 	private String shortenedURL;
+
+	private String originalURL;
 
 	public UrlRzr() {
 	}

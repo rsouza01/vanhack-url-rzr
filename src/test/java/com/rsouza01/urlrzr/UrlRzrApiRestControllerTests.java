@@ -7,8 +7,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UrlrzrApplicationTests {
+public class UrlRzrApiRestControllerTests {
 
+	
 	@Test
 	public void contextLoads() {
 	}

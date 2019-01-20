@@ -10,7 +10,15 @@ public class UrlRequest {
     @Size(min = 5, max = 1024)
     private String url;
 
-    public String getUrl() {
+	public UrlRequest() {
+		
+	}
+	
+	public UrlRequest(String url) {
+		this.url = url;
+	}
+
+	public String getUrl() {
         return url;
     }
 
