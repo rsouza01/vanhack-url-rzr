@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,16 +34,16 @@ public class UrlRzrServiceImpl implements UrlRzrService {
 		
 		String shortenedUrl = UrlRzrUtils.url2MD5(originalUrl, UrlRzrServiceImpl.URL_SHORTENED_SIZE);
 
-		UrlRzr urlRzrAlreadyTaken = urlRzrRepository.findOne(shortenedUrl);
+		Optional<UrlRzr> urlRzrAlreadyTaken = urlRzrRepository.findById(shortenedUrl);
 		
-		while(urlRzrAlreadyTaken != null)
+		while(urlRzrAlreadyTaken.isPresent())
 		{
 			/* MD5 and url match*/
-			if(urlRzrAlreadyTaken.getOriginalURL().compareToIgnoreCase(originalUrl) == 0) {
-				return urlRzrAlreadyTaken.getShortenedURL();
+			if(urlRzrAlreadyTaken.get().getOriginalURL().compareToIgnoreCase(originalUrl) == 0) {
+				return urlRzrAlreadyTaken.get().getShortenedURL();
 			} else {
 				shortenedUrl = UrlRzrUtils.url2MD5(originalUrl, UrlRzrServiceImpl.URL_SHORTENED_SIZE);
-				urlRzrAlreadyTaken = urlRzrRepository.findOne(shortenedUrl);
+				urlRzrAlreadyTaken = urlRzrRepository.findById(shortenedUrl);
 			}
 		}
 		
@@ -56,12 +57,12 @@ public class UrlRzrServiceImpl implements UrlRzrService {
 	@Override
 	public String getOriginalUrl(String shortenedUrl) throws UrlNotFoundException {
 		
-		UrlRzr urlRzr = urlRzrRepository.findOne(shortenedUrl); 
+		Optional<UrlRzr> urlRzr = urlRzrRepository.findById(shortenedUrl); 
 		
-		if(urlRzr == null) 
+		if(!urlRzr.isPresent()) 
 			throw new UrlNotFoundException();
 		else 
-			return urlRzr.getOriginalURL();
+			return urlRzr.get().getOriginalURL();
 	}
 
 	@Override

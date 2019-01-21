@@ -25,7 +25,6 @@ If you will transfer it to another team - it should be clear how to work with it
 
 You should send us a link to a Git repository that we will be able to clone.
 
-
 ### Links
 
 - https://www.concretepage.com/spring-boot/spring-boot-crudrepository-example#Interface
@@ -34,36 +33,40 @@ You should send us a link to a Git repository that we will be able to clone.
 
 - http://localhost:8080/h2-console
 
+### Running the project
+
+First, you have to build the project and finally the docker image. Both procedures are inside the file publish-server-mvn.sh. Once the server is running, you can run the tests either by using Postman or runing the `run-tests.sh` script (curl is a dependency). 
+
+### API Documentation
+
+- Swagger documentation can be accessed via  http://localhost:8080/v2/api-docs
+
+- Swagger UI can be accessed by http://localhost:8080/swagger-ui.html
 
 
-# Neueda Frontend Assignment
+#### Shorten URL
+- Endpoint: /
+- Method: POST
+- Data: '{"url":[string]} - Example: {"url":"http://www.rodrigosouza.net.br"}
+- Success response code: 200
+- Content: url shortened [string]
+- Error response: 400 (bad request for invalid URLs) or 500 (internal server error)
+- Sample call:  curl -i --data '{"url":"http://www.rodrigosouza.net.br"}' -H "Content-Type: application/json" -X POST http://localhost:8080/
 
-## Description
 
-Most of us are familiar with URLs like `bit.ly` or `t.co` on our Twitter or Facebook feeds.
-These are examples of shortened URLs, which are a short alias or pointer to a longer page link.
-For example, the shortened URL [https://bit.ly/2CarA6F](https://bit.ly/2CarA6F) will forward you to a Google URL with search results about cats.
+#### Redirect to URL
+- Endpoint: /{shortenedUrl}
+- Method: GET
+- URL Params(required): shortenedUrl:[string] (example:shortenedUrl=b9a982c) 
+- Success response code: 301 (MOVED_PERMANENTLY, redirection)
+- Error response: 404 (url not found)
+- Sample call:  curl -i -H "Content-Type: application/json" -X GET http://localhost:8080/b9a982c
 
-## Mandatory Requirements
 
-Create a frontend web application where you can submit a long URL and display the registered shorten URL.
+#### Redirect to URL
+- Endpoint: /{statistics}
+- Method: GET
+- Success response code: 200 (SUCCESS)
+- Sample call:  curl -i -H "Content-Type: application/json" -X GET http://localhost:8080/statistics
 
-Implement the matching backend that will persist the data and handle redirect.
 
-## Additional Requirements
-
-- Gather different statistics and present them in the front end
-- Write tests (unit / bit / e2e) with the framework of your choice.
-  Please note, this should demonstrate your ability to write tests, 100% coverage is **NOT** the target.
-- Implement and document up to 5 improvements of your choice
-- Use Docker / Docker compose
-
-## Assessment
-
-Use the web frontend technologies of your choice.
-
-Treat this as a real project.
-It should be readable, maintainable, and extensible where appropriate.
-Document and comment the solution as if you will transfer it to another team, it should be clear how to work with it and what is going on.
-
-You should send us a link to a Git repository that we will be able to clone.

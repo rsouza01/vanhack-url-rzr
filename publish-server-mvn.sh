@@ -86,7 +86,7 @@ if [ $? -ne 0 ]; then
 	exit -1
 fi
 
-docker run --name=$SERVER_NAME --publish=$SERVER_PORT:$SERVER_PORT -it $ORG_NAME/$SERVER_NAME:latest
+docker run --rm --name=$SERVER_NAME --publish=$SERVER_PORT:$SERVER_PORT -it $ORG_NAME/$SERVER_NAME:latest
 
 
 echo "[INFO] ------------------------------------------------------------------------"

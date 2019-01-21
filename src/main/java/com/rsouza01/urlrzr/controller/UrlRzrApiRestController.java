@@ -24,13 +24,17 @@ import com.rsouza01.urlrzr.model.Statistics;
 import com.rsouza01.urlrzr.services.UrlRzrService;
 import com.rsouza01.urlrzr.utils.UrlRzrUtils;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value = "URL Shortener")
 @RestController
 public class UrlRzrApiRestController {
 	
 	@Autowired
 	private UrlRzrService urlRzrService;
 	
-	
+	@ApiOperation(value = "Shortens a given URL")
     @RequestMapping(value="/", method = RequestMethod.POST)
     public ResponseEntity<String> shortenUrl(HttpServletRequest httpRequest,
     		@RequestBody @Valid UrlRequest request,
@@ -56,6 +60,7 @@ public class UrlRzrApiRestController {
 		}
     }
     
+	@ApiOperation(value = "Redirect to a given url")
     @RequestMapping(value = "/{shortenedUrl}", method = RequestMethod.GET)
     public ResponseEntity<Void> redirectToUrl(@PathVariable String shortenedUrl, HttpServletResponse resp) throws Exception {
     	
@@ -80,6 +85,7 @@ public class UrlRzrApiRestController {
 		}
     }
     
+	@ApiOperation(value = "Displays several statistics from the system.")
     @RequestMapping(value = "/statistics", method = RequestMethod.GET)
     public ResponseEntity<Statistics> getStatistics() throws Exception {
     	
