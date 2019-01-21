@@ -65,6 +65,8 @@ echo "[INFO] -------------------------------------------------------------------
 
 $MAVEN clean package
 
+$MAVEN heroku:deploy
+
 if [ $? -ne 0 ]; then
 	echo "[ERROR] ------------------------------------------------------------------------"
 	echo "[ERROR] Error running '$MAVEN clean package'."

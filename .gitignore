@@ -231,3 +231,4 @@ pickle-email-*.html
 node_modules/
 
 
+.travis.yml
