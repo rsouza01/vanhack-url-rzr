@@ -1,4 +1,6 @@
-# Assignment: URL Shortener [![Build Status](https://travis-ci.org/rsouza01/vanhack-url-rzr.svg?branch=master)](https://travis-ci.org/rsouza01/vanhack-url-rzr)
+# Assignment: URL Shortener [![Build Status](https://travis-ci.org/rsouza01/vanhack-url-rzr.svg?branch=master)](https://travis-ci.org/rsouza01/vanhack-url-rzr) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 
 ## Description
 
