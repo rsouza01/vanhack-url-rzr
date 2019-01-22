@@ -1,4 +1,4 @@
-# Assignment: URL Shortener
+# Assignment: URL Shortener [![Build Status](https://travis-ci.org/rsouza01/vanhack-url-rzr.svg?branch=master)](https://travis-ci.org/rsouza01/vanhack-url-rzr)
 
 ## Description
 
