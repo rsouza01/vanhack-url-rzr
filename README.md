@@ -1,7 +1,5 @@
 # Assignment: URL Shortener [![Build Status](https://travis-ci.org/rsouza01/vanhack-url-rzr.svg?branch=master)](https://travis-ci.org/rsouza01/vanhack-url-rzr) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-
-
 ## Description
 
 Most of us are familiar with seeing URLs like bit.ly or t.co on our Twitter or Facebook feeds. These are examples of shortened URLs, which are a short alias or pointer to a longer page link. For example, I can send you the shortened URL http://bit.ly/SaaYw5 that will forward you to a very long Google URL with search results on how to iron a shirt.
