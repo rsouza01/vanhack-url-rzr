@@ -25,7 +25,7 @@ If you will transfer it to another team - it should be clear how to work with it
 
 You should send us a link to a Git repository that we will be able to clone.
 
-### Links
+### Links (References)
 
 - https://www.concretepage.com/spring-boot/spring-boot-crudrepository-example#Interface
 - https://www.baeldung.com/spring-jpa-test-in-memory-database
